@@ -36,6 +36,7 @@ target_link_libraries(
   benchmark
 
   dbus-cpp
+  properties-cpp
 
   ${CMAKE_THREAD_LIBS_INIT}
   ${Boost_LIBRARIES}
