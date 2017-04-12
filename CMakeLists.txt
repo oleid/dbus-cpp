@@ -54,10 +54,17 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(DBUS dbus-1)
 pkg_check_modules(PROCESS_CPP process-cpp)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-include(cmake/EnableCoverageReport.cmake)
-include(cmake/PrePush.cmake)
+if(NOT PROCESS_CPP_FOUND)
+   # assume a target with the same name is known to CMake
+   # (i.e. when being imported as submodule)
+   SET(PROCESS_CPP_LIBRARIES process-cpp)
+else()
+   # unused, when being used as submodule
+   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+  
+   include(cmake/EnableCoverageReport.cmake)
+   include(cmake/PrePush.cmake)
+endif()
 
 include(GNUInstallDirs)
 
@@ -104,4 +111,4 @@ add_subdirectory(include)
 add_subdirectory(src)
 add_subdirectory(tests)
 
-enable_coverage_report(benchmark)
+#enable_coverage_report(benchmark)
