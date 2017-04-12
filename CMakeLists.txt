@@ -57,7 +57,7 @@ pkg_check_modules(PROCESS_CPP process-cpp)
 if(NOT PROCESS_CPP_FOUND)
    # assume a target with the same name is known to CMake
    # (i.e. when being imported as submodule)
-   SET(PROCESS_CPP_LIBRARIES process-cpp)
+   SET(PROCESS_CPP_LIBRARIES process-cpp properties-cpp)
 else()
    # unused, when being used as submodule
    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -103,6 +103,9 @@ include_directories(
   include
   ${LIBXML2_INCLUDE_DIR}
 )
+
+
+set(symbol_map "${CMAKE_CURRENT_LIST_DIR}/symbols.map")
 
 add_subdirectory(data)
 add_subdirectory(doc)
