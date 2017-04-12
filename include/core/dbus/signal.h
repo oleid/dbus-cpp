@@ -183,7 +183,7 @@ private:
 
     inline void operator()(const Message::Ptr&) noexcept;
 
-    struct ORG_FREEDESKTOP_DBUS_DLL_LOCAL Shared
+    struct Shared
     {
         Shared(
             const std::shared_ptr<Object>& parent, 
